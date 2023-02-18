@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="col-lg-12 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-10">
+          <h2 class="card-title">City's List</h2>
+        </div>
+        <div class="col-md-2">
+          <a href="{% url 'cities:city_create' %}" class="btn btn-primary">Add New City</a>
+        </div>
+      </div>
+      <br>
+      <div class="table-responsive">
+        <table class="table table-bordered">
+          <thead>
+          <tr>
+            <th> # </th>
+            <th> Name </th>
+            <th> State </th>
+            <th> Country </th>
+            <th> Action </th>
+          </tr>
+          </thead>
+          <tbody>
+          {% for city in cities %}
+          <tr>
+            <td> {{ forloop.counter }} </td>
+            <td> {{ city.name }} </td>
+            <td> {{ city.state }} </td>
+            <td> {{ city.country }} </td>
+            <td>
+              <a href="{% url 'cities:city_update' city.pk %}" class="btn mx-1 btn-primary btn-sm">
+                <i class="fa fa-pencil"></i><span>Edit</span>
+              </a>
+              <a href="{% url 'cities:city_delete' city.pk %}" class="btn mx-1 btn-danger btn-sm">
+                <i class="fa fa-trash"></i><span>Delete</span>
+              </a>
+            </td>
+          </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

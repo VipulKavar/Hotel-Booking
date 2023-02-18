@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="col-lg-12 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-10">
+          <h2 class="card-title">Hotel's List</h2>
+        </div>
+        <div class="col-md-2">
+          <a href="{% url 'hotels:hotel_create' %}" class="btn btn-primary">Add New Hotel</a>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-bordered">
+          <thead>
+          <tr>
+            <th> # </th>
+            <th> Name </th>
+            <th> Manager </th>
+            <th> City </th>
+            <th> Contact Number </th>
+            <th> Price </th>
+            <th> Rating </th>
+            <th> Features </th>
+            <th> Action </th>
+          </tr>
+          </thead>
+          <tbody>
+          {% for hotel in hotels %}
+          <tr>
+            <td> {{ forloop.counter }} </td>
+            <td> {{ hotel.name }} </td>
+            <td> {{ hotel.manager.username }} </td>
+            <td> {{ hotel.city.name }} </td>
+            <td> {{ hotel.contact_number }} </td>
+            <td> {{ hotel.price }} </td>
+            <td> {{ hotel.rating }} </td>
+            <td> {{ hotel.feature }} </td>
+            <td>
+              <a href="{% url 'hotels:hotel_update' hotel.pk %}" class="btn mx-1 btn-primary btn-sm">
+                <i class="fa fa-pencil"></i><span>Edit</span>
+              </a>
+              <a href="{% url 'hotels:hotel_delete' hotel.pk %}" class="btn mx-1 btn-danger btn-sm">
+                <i class="fa fa-trash"></i><span>Delete</span>
+              </a>
+            </td>
+          </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

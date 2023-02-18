@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="row d-flex justify-content-center">
+    <div class="col-lg-7 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-8">
+                        <h2 class="card-title">Add New City</h2>
+                    </div>
+                    <div class="col-md-4">
+                        <a class="btn btn-primary" href="{% url 'cities:city_create_multiple' %}">Create Multiple</a>
+                    </div>
+                </div>
+                <br>
+                <div class="row d-flex justify-content-center">
+                    <div class="col-md-6">
+                        <form action="" method="post">
+                            {% csrf_token %}
+                            {{ form | crispy }}
+                            <div class="text-center">
+                                <input class="btn btn-primary" value="Add" type="submit">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}

@@ -1,0 +1,150 @@
+{% load static %}
+
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+    <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
+        <a class="sidebar-brand brand-logo" href="index.html">
+            <img alt="logo" src="{% static 'assets/images/logo.svg' %}"/>
+        </a>
+        <a class="sidebar-brand brand-logo-mini" href="index.html">
+            <img alt="logo" src="{% static 'assets/images/logo-mini.svg' %}"/>
+        </a>
+    </div>
+    <ul class="nav">
+        <li class="nav-item profile">
+            <div class="profile-desc">
+                <a href="{% url 'users:user_profile' user.pk %}" style="text-decoration:none;">
+                    <div class="profile-pic">
+                        <div class="count-indicator">
+                            <img alt="" class="img-xs rounded-circle" src="{{ user.profile.image.url }}"/>
+                            <span class="count bg-success"></span>
+                        </div>
+                        <div class="profile-name">
+                            <h5 class="mb-0 font-weight-normal text-light">{{ user.username | capfirst }}</h5>
+                            <span>{{ user.user_type }}</span>
+                        </div>
+                    </div>
+                </a>
+                <a data-toggle="dropdown" href="#" id="profile-dropdown">
+                    <i class="mdi mdi-dots-vertical"></i>
+                </a>
+                <div aria-labelledby="profile-dropdown" class="dropdown-menu dropdown-menu-right sidebar-dropdown preview-list">
+                    <a class="dropdown-item preview-item" href="{% url 'users:user_profile' user.pk %}">
+                        <div class="preview-thumbnail">
+                            <div class="preview-icon bg-dark rounded-circle">
+                                <i class="mdi mdi-settings text-primary"></i>
+                            </div>
+                        </div>
+                        <div class="preview-item-content">
+                            <p class="preview-subject ellipsis mb-1 text-small">Account settings</p>
+                        </div>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item preview-item" href="#">
+                        <div class="preview-thumbnail">
+                            <div class="preview-icon bg-dark rounded-circle">
+                                <i class="mdi mdi-onepassword text-info"></i>
+                            </div>
+                        </div>
+                        <div class="preview-item-content">
+                            <p class="preview-subject ellipsis mb-1 text-small">Change Password</p>
+                        </div>
+                    </a>
+                    <div class="dropdown-divider"></div>
+                </div>
+            </div>
+        </li>
+        <li class="nav-item nav-category">
+            <span class="nav-link">Navigation</span>
+        </li>
+        <li class="nav-item menu-items">
+            <a class="nav-link" href="{% url 'users:home' %}">
+                <span class="menu-icon"><i class="mdi mdi-speedometer"></i></span>
+                <span class="menu-title">Dashboard</span>
+            </a>
+        </li>
+        <!-- Users -->
+        <li class="nav-item menu-items">
+            <a aria-controls="user-tab" aria-expanded="false" class="nav-link" data-toggle="collapse" href="#user-tab">
+                <span class="menu-icon"><i class="mdi mdi-contacts"></i></span>
+                <span class="menu-title">Users</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="user-tab">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'users:user_list' %}">View Users</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'users:user_create' %}">Add Users</a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <!-- City -->
+        <li class="nav-item menu-items">
+            <a aria-controls="cities" aria-expanded="false" class="nav-link" data-toggle="collapse" href="#cities">
+                <span class="menu-icon"><i class="mdi mdi-home-city"></i></span>
+                <span class="menu-title">Cities</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="cities">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'cities:city_list' %}">View Cities</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'cities:city_create_multiple' %}">Add Multiple Cities</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'cities:city_create' %}">Add City</a>
+                    </li>
+
+                </ul>
+            </div>
+        </li>
+        <!-- Hotels -->
+        <li class="nav-item menu-items">
+            <a aria-controls="hotel" aria-expanded="false" class="nav-link" data-toggle="collapse" href="#hotel">
+                <span class="menu-icon"><i class="mdi mdi-hotel"></i></span>
+                <span class="menu-title">Hotels</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="hotel">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'hotels:hotel_list' %}">View Hotels</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'hotels:hotel_create' %}"> Add New Hotel </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <!-- Bookings -->
+        <li class="nav-item menu-items">
+            <a aria-controls="booking" aria-expanded="false" class="nav-link" data-toggle="collapse" href="#booking">
+                <span class="menu-icon"><i class="mdi mdi-clipboard-check"></i></span>
+                <span class="menu-title">Bookings</span>
+                <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="booking">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'bookings:booking_list' %}"> View Bookings </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'bookings:booking_create' %}"> Create Booking </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+        <li class="nav-item menu-items">
+            <a class="nav-link" href="documentation">
+        <span class="menu-icon">
+          <i class="mdi mdi-file-document-box"></i>
+        </span>
+                <span class="menu-title">Documentation</span>
+            </a>
+        </li>
+    </ul>
+</nav>

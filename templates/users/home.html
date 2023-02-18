@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<h3>User Authentication</h3>
+<ul class="nav">
+    <li class="nav-item"><a class="nav-link" href="{% url 'users:user_list' %}"> User List </a></li>
+    <li class="nav-item"><a class="nav-link" href="{% url 'users:user_create' %}"> Add User </a></li>
+    <li class="nav-item"><a class="nav-link" href="{% url 'users:user_login' %}">User Login </a></li>
+    <li class="nav-item"><a class="nav-link" href="{% url 'users:user_profile' user.pk %}">User Profile</a></li>
+</ul>
+<h3>Hotel</h3>
+<ul class="nav">
+    <li class="nav-item"><a class="nav-link" href="{% url 'hotels:hotel_list' %}">Hotel List </a></li>
+    <li class="nav-item"><a class="nav-link" href="{% url 'hotels:hotel_create' %}"> Create Hotel </a></li>
+    {% if user.user_type == 'manager' %}
+    <li class="nav-item"><a class="nav-link" href="{% url 'hotels:hotel_update' user.hotel_set.first.id %}"> Update Hotel </a></li>
+    <li class="nav-item"><a class="nav-link" href="{% url 'hotels:hotel_delete' user.hotel_set.first.id %}"> Delete Hotel </a></li>
+    {% endif %}
+</ul>
+
+<h3>Booking</h3>
+<ul class="nav">
+    <li class="nav-item"><a class="nav-link" href="{% url 'bookings:booking_list' %}">Booking List </a></li>
+    <li class="nav-item"><a class="nav-link" href="{% url 'bookings:booking_create' %}"> Create Booking </a></li>
+</ul>
+
+<h3>City</h3>
+<ul class="nav">
+    <li class="nav-item"><a class="nav-link" href="{% url 'cities:city_list' %}">City List </a></li>
+    <li class="nav-item"><a class="nav-link" href="{% url 'cities:city_create' %}"> Create City </a></li>
+    <li class="nav-item"><a class="nav-link" href="{% url 'cities:city_create_multiple' %}">Create City Multiple </a></li>
+
+</ul>
+
+<h3>Other Pages</h3>
+<ul class="nav">
+    <li class="nav-item"><a class="nav-link" href="{% url 'users:user_forbidden' %}">403 </a></li>
+</ul>
+{% endblock content %}
