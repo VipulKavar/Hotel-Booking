@@ -15,5 +15,4 @@ urlpatterns = [
     path('login/', LoginView.as_view(template_name="users/user_login.html"), name='user_login'),
     path('logout/', LogoutView.as_view(template_name='users/user_logout.html'), name='user_logout'),
     path('forbidden/', views.ForbiddenView.as_view(), name='user_forbidden'),
-
 ]
